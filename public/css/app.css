@@ -421,14 +421,14 @@ header ul.top-nav-list li a:hover {
 }
 
 .checkout-button {
-  background: #4cd137;
-  border: solid 1px #44bd32;
+  background: #079992;
+  border: solid 1px #38ada9;
   color: white!important;
 }
 
 .checkout-button:hover,
 .confirmation-button:hover {
-  background: #44bd32;
+  background: #38ada9;
 }
 
 .confirmation-button {

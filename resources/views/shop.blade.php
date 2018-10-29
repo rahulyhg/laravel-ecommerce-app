@@ -28,7 +28,7 @@
         <div class="products text-center">
         @foreach ($products as $product)
             <div class="product">
-                <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}"><img src="{{ asset('img/macbook-pro.png') }}" alt="product"></a>
+                <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}"><img src="{{ asset('img/' . $product->slug . '.png') }}" alt="product"></a>
                 <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}">
                     <div class="product-name">{{ $product->name }}</div>
                 </a>

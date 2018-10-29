@@ -31,7 +31,7 @@
                 <li><a href="{{ route('shop.index') }}">Boutique</a></li>
                 <li><a href="#">A propos</a></li>
                 <li><a href="#">Blog</a></li>
-                <li><a href="#">Panier <div class="dot">3</div></a></li>
+                <li><a href="{{ route('cart.index') }}">Panier <div class="dot">3</div></a></li>
             </ul>
         </div> <!-- end top-nav -->
     </div> <!-- end shop-header -->

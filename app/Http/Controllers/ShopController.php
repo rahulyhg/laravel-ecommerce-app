@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Product;
 
 class ShopController extends Controller
@@ -28,8 +27,12 @@ class ShopController extends Controller
     public function show($slug)
     {
         $product = Product::where('slug', $slug)->firstOrFail();
+        $mightAlsoLikes = Product::where('slug', '!=', $slug)->mightAlsoLike()->get();
 
-        return view('product')->with('product', $product);
+        return view('product')->with([
+            'product' => $product,
+            'mightAlsoLikes' => $mightAlsoLikes,
+        ]);
     }
 
 }
