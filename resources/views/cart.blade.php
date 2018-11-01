@@ -3,73 +3,43 @@
 
 @section('content')
     <div class="container">
-        <h2 class="cart-title">3 article(s) dans votre Panier</h2>
+
+        @if (Cart::count() > 0)
+        <h2 class="cart-title"> {{ Cart::count() }} article(s) dans votre Panier</h2>
 
         <div class="shopping-cart">
-            <div class="shopping-item">
-                <img src="img/macbook-pro.png" alt="product">
-                <div class="details">
-                    <h3>Laptop 5</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur.</p>
-                </div>
-                <div class="options">
-                    <a href="#">Supprimer</a><br>
-                    <a href="#">Sauver pour plus tard</a>
-                </div>
-                <select>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <div class="item-price">
-                    $1499.99
-                </div>
+        @foreach (Cart::content() as $item)
+        <div class="shopping-item">
+            <a href="{{ route('shop.show', ['id' => $item->model->slug]) }}"><img src="{{ asset('img/products/' . $item->model->slug . '.png') }}" alt="product"></a>
+            <div class="details">
+                <h3><a href="{{ route('shop.show', ['id' => $item->model->slug]) }}">{{ $item->model->name }}</a></h3>
+                <p>{{ str_limit($item->model->details, $limit = 50, $end = '...') }}</p>
             </div>
-            <div class="shopping-item">
-                <img src="img/macbook-pro.png" alt="product">
-                <div class="details">
-                    <h3>Laptop 5</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur.</p>
-                </div>
-                <div class="options">
-                    <a href="#">Supprimer</a><br>
-                    <a href="#">Sauver pour plus tard</a>
-                </div>
-                <select>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <div class="item-price">
-                    $1499.99
-                </div>
+            <div class="options">
+                <form action="{{ route('cart.destroy', $item->rowId) }}" method="POST">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="remove-button">Supprimer</button>
+                </form>
+                <form action="{{ route('saveforlater.switch', $item->rowId) }}" method="POST">
+                    {{ csrf_field() }}
+                    <button type="submit" class="later-button">Mettre de côté</button>
+                </form>
             </div>
-            <div class="shopping-item">
-                <img src="img/macbook-pro.png" alt="product">
-                <div class="details">
-                    <h3>Laptop 5</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur.</p>
-                </div>
-                <div class="options">
-                    <a href="#">Supprimer</a><br>
-                    <a href="#">Sauver pour plus tard</a>
-                </div>
-                <select>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-                <div class="item-price">
-                    $1499.99
-                </div>
+            <select>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <div class="item-price">
+                {{ $item->model->formattedPrice() }}
             </div>
+        </div>
+        @endforeach
         </div> <!-- shopping-cart end -->
+
         <div class="coupon">
             <h3>Vous avez un code?</h3>
             <form action="#">
@@ -86,9 +56,9 @@
                     <div><span class="total">Total</span></div>
                 </div>
                 <div class="results">
-                    <div>1499.99 €</div>
-                    <div>195 €</div>
-                    <div><span class="total">1694.99 €</span></div>
+                    <div>{{ formattedPrice(Cart::subtotal()) }}</div>
+                    <div>{{ formattedPrice(Cart::tax()) }}</div>
+                    <div><span class="total">{{ formattedPrice( Cart::total()) }}</span></div>
                 </div>
             </div>
         </div>
@@ -96,8 +66,49 @@
             <a href="#" class="button">Continuer le shopping</a>
             <a href="checkout.html" class="button checkout-button">Procéder au paiement</a>
         </div>
-    </div>
 
+        @else
+            <h3 class="cart-title">Votre panier est vide!</h3>
+        @endif
+
+        @if(Cart::instance('saveForLater')->count() > 0)
+        <div class="save-for-later">
+            <h2 class="cart-title">{{ Cart::instance('saveForLater')->count() }} produits enregistré(s) pour plus tard</h2>
+                <div class="shopping-cart">
+                @foreach (Cart::instance('saveForLater')->content() as $item)
+                <div class="shopping-item">
+                    <a href="{{ route('shop.show', ['id' => $item->model->slug]) }}"><img src="{{ asset('img/products/' . $item->model->slug . '.png') }}" alt="product"></a>
+                    <div class="details">
+                        <h3><a href="{{ route('shop.show', ['id' => $item->model->slug]) }}">{{ $item->model->name }}</a></h3>
+                        <p>{{ str_limit($item->model->details, $limit = 50, $end = '...') }}</p>
+                    </div>
+                    <div class="options">
+                        <form action="{{ route('saveforlater.destroy', $item->rowId) }}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="remove-button">Supprimer</button>
+                        </form>
+                        <form action="{{ route('saveforlater.switchToCart', $item->rowId) }}" method="POST">
+                            {{ csrf_field() }}
+                            <button type="submit" class="remove-button">Mettre dans le panier</button>
+                        </form>
+                    </div>
+                    <select>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <div class="item-price">
+                        {{ $item->model->formattedPrice() }}
+                    </div>
+                </div>
+                @endforeach
+                </div> <!-- shopping-cart end -->
+        </div>
+        @endif
+    </div>
     @include('partials/might-like')
 
 @endsection

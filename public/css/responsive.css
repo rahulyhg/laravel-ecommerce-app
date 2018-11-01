@@ -35,7 +35,7 @@
       padding: 50px 0 25px 0 !important;
     }
 
-    .products {
+    .shop-section > .products {
       grid-template-columns: repeat(2, 1fr) !important;
       padding: 0 1em;
     }
@@ -63,17 +63,16 @@
         margin-top: 3em !important;
     }
 
-    .mightalsolike > .products {
-        text-align: center;
-    }
-
     .mightalsolike h3 {
         margin-left: 1em;
     }
 
-    .mightalsolike .products {
+    .mightalsolike .products,
+    .products {
         grid-gap: 8px;
         margin-bottom: 2em;
+        padding: 0 1em;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .mightalsolike .product-border {
@@ -181,7 +180,7 @@
         margin-bottom: 0.5em;
     }
 
-    .top-nav-list a{
+    .top-nav-list a {
        font-size: 12px !important;
       }
 }

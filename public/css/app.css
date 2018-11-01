@@ -60,6 +60,17 @@ img {
   text-align: center;
 }
 
+.remove-button,
+.later-button {
+  background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+  outline: inherit;
+}
+
 .container {
   max-width: 1100px;
   margin: auto;
@@ -68,6 +79,12 @@ img {
 .button {
   border: 1px solid var(--text-color);
   padding: 12px 40px;
+}
+
+button.button {
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
 }
 
 .button-white {
@@ -104,6 +121,21 @@ img {
 
 .product-name {
   font-weight: 400;
+}
+
+.alert {
+  padding: 20px;
+  font-weight: 400;
+  color: white;
+  margin-bottom: 2em;
+}
+
+.alert-success {
+  background-color: #44bd32;
+}
+
+.alert-danger {
+  background-color: #e84118;
 }
 
 /* SHOP SECTION */
@@ -175,7 +207,7 @@ ul.top-nav-list li a:hover {
   background: var(--light-gray-background);
   padding: 18px;
   border-bottom: solid 1px var(--separator-color);
-  margin-bottom: 4em;
+  margin-bottom: 2em;
 }
 
 .breadcrumb a {
@@ -187,18 +219,12 @@ ul.top-nav-list li a:hover {
   padding: 50px 0;
 }
 
-.products {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: var(--gutter);
-}
-
 .shop-section {
   flex: 3;
 }
 
 .shop-section .products {
-  grid-template-columns: 1fr 1fr 1fr !important;
+  grid-template-columns: 1fr 1fr 1fr;
   margin-bottom: 2em;
 }
 
@@ -465,6 +491,10 @@ header ul.top-nav-list li a:hover {
 
 .accounting {
   margin-right: 1em;
+}
+
+.save-for-later {
+  margin: 4em 0 2em 0;
 }
 
 /* CHECKOUT */

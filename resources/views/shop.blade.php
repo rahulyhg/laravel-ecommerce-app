@@ -23,20 +23,18 @@
     </div> <!-- end categories-->
 
     <div class="shop-section">
-
         <h1 class="main-title">Portables</h1>
         <div class="products text-center">
         @foreach ($products as $product)
             <div class="product">
-                <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}"><img src="{{ asset('img/' . $product->slug . '.png') }}" alt="product"></a>
-                <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}">
+                <a href="{{ route('shop.show', ['slug' => $product->slug]) }}"><img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="product"></a>
+                <a href="{{ route('shop.show', ['slug' => $product->slug]) }}">
                     <div class="product-name">{{ $product->name }}</div>
                 </a>
                 <div class="product-price">{{ $product->formattedPrice() }}</div>
             </div>
         @endforeach
         </div> <!-- end products -->
-
     </div> <!-- end shop-section -->
 </div> <!-- end main -->
 @endsection

@@ -31,7 +31,7 @@
                 <li><a href="{{ route('shop.index') }}">Boutique</a></li>
                 <li><a href="#">A propos</a></li>
                 <li><a href="#">Blog</a></li>
-                <li><a href="{{ route('cart.index') }}">Panier <div class="dot">3</div></a></li>
+                <li><a href="{{ route('cart.index') }}">Panier <div class="dot">{{ Cart::instance('default')->count() }}</div></a></li>
             </ul>
         </div> <!-- end top-nav -->
     </div> <!-- end shop-header -->
@@ -40,5 +40,6 @@
         <div class="container">
             <a href="{{ route('homepage') }}">Accueil</a> <i class="fa fa-caret-right fa-fw" aria-hidden="true"></i> <a href="{{ route('shop.index') }}">Boutique</a>
         </div>
-    </div>
+    </div> <!-- end breadcrumb -->
+    @include('partials/messages')
 

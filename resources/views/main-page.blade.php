@@ -32,7 +32,7 @@
             <li><a href="{{ route('shop.index') }}">Boutique</a></li>
             <li><a href="#">Catégories</a></li>
             <li><a href="#">Produits</a></li>
-            <li><a href="{{ route('cart.index') }}">Panier <span class="dot">3</span></a></li>
+            <li><a href="{{ route('cart.index') }}">Panier <span class="dot">{{ Cart::instance('default')->count() }}</span></a></li>
         </ul>
     </div> <!-- end top-nav -->
 
@@ -68,7 +68,7 @@
         <div class="products text-center">
             @foreach ($products as $product)
                 <div class="product">
-                    <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}"><img src="{{ asset('img/' . $product->slug . '.png') }}" alt="product"></a>
+                    <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}"><img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="product"></a>
                     <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}">
                         <div class="product-name">{{ $product->name }}</div>
                     </a>
