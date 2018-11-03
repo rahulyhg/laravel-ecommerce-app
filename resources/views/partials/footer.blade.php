@@ -10,6 +10,8 @@
     </div>
 </footer> <!-- end footer-content -->
 
+@yield('extra-js')
+
 </body>
 
 </html>

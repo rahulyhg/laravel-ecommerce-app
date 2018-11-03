@@ -23,13 +23,13 @@ class SaveForLaterController extends Controller
             });
 
             if ($duplicates->isNotEmpty()) {
-                return redirect()->route('cart.index')->withErrors('Cet article est déjà enregistré pour plus tard!');
+                return redirect()->route('cart.index')->withErrors('Cet article est déjà enregistré pour plus tard.');
             }
 
             Cart::instance('saveForLater')->add($item->id, $item->name, 1, $item->price)
                 ->associate('App\Product');
 
-            return redirect()->route('cart.index')->with('success', 'Votre produit a été mis de côté pour un futur achat!');
+            return redirect()->route('cart.index')->with('success', 'Votre produit a été mis de côté pour un futur achat.');
     }
 
     /**
@@ -40,22 +40,22 @@ class SaveForLaterController extends Controller
      */
     public function switchToCart($id)
     {
+        $duplicates = Cart::instance('default')->search(function ($cartItem, $rowId) use ($id) {
+            return $cartItem->id  === $id;
+        });
+
         $item = Cart::instance('saveForLater')->get($id);
 
         Cart::instance('saveForLater')->remove($id);
 
-        $duplicates = Cart::search(function ($cartItem, $rowId) use ($id) {
-            return $cartItem->id  === $id;
-        });
-
         if ($duplicates->isNotEmpty()) {
-            return redirect()->route('cart.index')->withErrors('Ce produit est déjà dans votre panier!');
+            return redirect()->route('cart.index')->withErrors('Le produit est déjà dans votre panier.');
         }
 
         Cart::instance('default')->add($item->id, $item->name, 1, $item->price)
             ->associate('App\Product');
 
-        return redirect()->route('cart.index')->with('success', 'L\' article a été ajouté à votre panier!');
+        return redirect()->route('cart.index')->with('success', 'Le produit a été remis dans votre panier.');
 
     }
 
@@ -69,6 +69,6 @@ class SaveForLaterController extends Controller
     {
         Cart::instance('saveForLater')->remove($id);
 
-        return back()->with('success', 'L\' article a bien été supprimé');
+        return back()->with('success', 'Le produit a été retiré.');
     }
 }

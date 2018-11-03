@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
-class CartController extends Controller
+class CheckoutController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,9 @@ class CartController extends Controller
      */
     public function index()
     {
-        $mightAlsoLikes = Product::mightAlsoLike()->get();
+        $items = Cart::instance('default')->content();
 
-        return view('cart')->with('mightAlsoLikes', $mightAlsoLikes);
+        return view('checkout')->with('items', $items);
     }
 
     /**
@@ -38,18 +37,7 @@ class CartController extends Controller
      */
     public function store(Request $request)
     {
-        $duplicates = Cart::instance('default')->search(function ($cartItem, $rowId) use ($request) {
-            return $cartItem->id  === $request->id;
-        });
-
-        if ($duplicates->isNotEmpty()) {
-            return redirect()->route('cart.index')->withErrors('Ce produit est déjà dans votre panier.');
-        }
-
-        Cart::add($request->id, $request->name, 1, $request->price)
-            ->associate('App\Product');
-
-        return redirect()->route('cart.index')->with('success', 'Le produit a été ajouté au panier.');
+        //
     }
 
     /**
@@ -94,8 +82,6 @@ class CartController extends Controller
      */
     public function destroy($id)
     {
-        Cart::remove($id);
-
-        return back()->with('success', 'Le produit a été retiré du panier');
+        //
     }
 }

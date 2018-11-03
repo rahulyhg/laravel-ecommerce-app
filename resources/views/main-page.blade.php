@@ -32,7 +32,7 @@
             <li><a href="{{ route('shop.index') }}">Boutique</a></li>
             <li><a href="#">Catégories</a></li>
             <li><a href="#">Produits</a></li>
-            <li><a href="{{ route('cart.index') }}">Panier <span class="dot">{{ Cart::instance('default')->count() }}</span></a></li>
+            <li><a href="{{ route('cart.index') }}"><i class="fa fa-shopping-bag fa-fw" aria-hidden="true"></i> <span class="dot">{{ Cart::instance('default')->count() }}</span></a></li>
         </ul>
     </div> <!-- end top-nav -->
 

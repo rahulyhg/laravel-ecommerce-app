@@ -26,7 +26,7 @@
                     <button type="submit" class="later-button">Mettre de côté</button>
                 </form>
             </div>
-            <select>
+            <select class="quantity">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -63,12 +63,15 @@
             </div>
         </div>
         <div class="shopping-cart-buttons">
-            <a href="#" class="button">Continuer le shopping</a>
-            <a href="checkout.html" class="button checkout-button">Procéder au paiement</a>
+            <a href="{{ route('shop.index') }}" class="button">Continuer le shopping</a>
+            <a href="{{ route('checkout.index') }}" class="button checkout-button">Procéder au paiement</a>
         </div>
 
         @else
-            <h3 class="cart-title">Votre panier est vide!</h3>
+            <h2 class="cart-title">Votre panier est vide pour le moment.</h2>
+            @if(Cart::instance('saveForLater')->count() > 0)
+            <small>Mais vous avez des articles mis de côté pour un achat ultérieur. Pour en acheter un ou plus maintenant, cliquez sur Mettre dans le panier à côté de l'article.</small>
+            @endif
         @endif
 
         @if(Cart::instance('saveForLater')->count() > 0)
@@ -90,7 +93,7 @@
                         </form>
                         <form action="{{ route('saveforlater.switchToCart', $item->rowId) }}" method="POST">
                             {{ csrf_field() }}
-                            <button type="submit" class="remove-button">Mettre dans le panier</button>
+                            <button type="submit" class="later-button">Mettre dans le panier</button>
                         </form>
                     </div>
                     <select>
@@ -111,5 +114,20 @@
     </div>
     @include('partials/might-like')
 
+@endsection
+
+@section('extra-js')
+<script src="{{ asset('js/app.js') }}"></script>
+<script>
+    (function () {
+        const className = document.querySelectorAll('.quantity');
+
+        Array.from(className).forEach(function(element){
+            element.addEventListener('change', function() {
+                alert('changed');
+            });
+        });
+    })();
+</script>
 @endsection
 

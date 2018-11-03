@@ -23,3 +23,5 @@ Route::delete('/panier/{product}', 'CartController@destroy')->name('cart.destroy
 Route::post('/switchtosaveforlater/{product}', 'SaveForLaterController@switch')->name('saveforlater.switch');
 Route::post('switchtocart/{product}', 'SaveForLaterController@switchToCart')->name('saveforlater.switchToCart');
 Route::delete('/destroytosaveforlater/{product}', 'SaveForLaterController@destroy')->name('saveforlater.destroy');
+
+Route::get('/paiement', 'CheckoutController@index')->name('checkout.index');

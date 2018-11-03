@@ -21,6 +21,8 @@
     <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
 
     <title>@yield('title') | E-commerce App</title>
+
+    @yield('extra-css')
 </head>
 
 <body>
@@ -31,7 +33,7 @@
                 <li><a href="{{ route('shop.index') }}">Boutique</a></li>
                 <li><a href="#">A propos</a></li>
                 <li><a href="#">Blog</a></li>
-                <li><a href="{{ route('cart.index') }}">Panier <div class="dot">{{ Cart::instance('default')->count() }}</div></a></li>
+                <li><a href="{{ route('cart.index') }}"><i class="fa fa-shopping-bag fa-fw" aria-hidden="true"></i> <span class="dot">{{ Cart::instance('default')->count() }}</span></a></li>
             </ul>
         </div> <!-- end top-nav -->
     </div> <!-- end shop-header -->

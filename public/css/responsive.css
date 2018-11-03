@@ -153,6 +153,10 @@
         margin-bottom: 1em;
     }
 
+    .alert {
+        text-align: center;
+    }
+
     .footer-content {
         flex-direction: column;
     }
