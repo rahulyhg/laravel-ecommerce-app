@@ -26,3 +26,4 @@ Route::post('switchtocart/{product}', 'SaveForLaterController@switchToCart')->na
 Route::delete('/destroytosaveforlater/{product}', 'SaveForLaterController@destroy')->name('saveforlater.destroy');
 
 Route::get('/paiement', 'CheckoutController@index')->name('checkout.index');
+Route::post('/paiement', 'CheckoutController@store')->name('checkout.store');

@@ -101,6 +101,15 @@
         text-align: center;
     }
 
+    .cart-paragraph {
+        text-align: center;
+    }
+
+    .cart-small {
+        text-align: center;
+        padding: 0 1em;
+    }
+
     .main-title {
     margin-left: 0.5em;
     margin-top: 1em;

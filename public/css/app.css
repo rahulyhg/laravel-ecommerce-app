@@ -159,6 +159,15 @@ button.button {
   width: 2em;
 }
 
+.cart-paragraph a:hover {
+  color: var(--gray);
+}
+
+.cart-small {
+  margin-bottom: 1em;
+  display: block;
+}
+
 .main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -507,6 +516,10 @@ header ul.top-nav-list li a:hover {
   background: #079992 !important;
   border: solid 1px #38ada9 !important;
   color: white !important;
+}
+
+.confirmation-button:disabled {
+  cursor: not-allowed;
 }
 
 .checkout-button:hover,

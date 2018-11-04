@@ -12,32 +12,35 @@
     <div class="main s-between">
         <div class="billing-details">
             <h2>Détails de facturation</h2>
-            <form action="#" id="payment-form">
+            <form action="{{ route('checkout.store') }}" method="POST" id="payment-form">
+                {{ csrf_field() }}
                 <label for="email">Votre adresse mail</label>
-                <input type="email" id="email">
+                <input type="email" name="email" id="email">
                 <label for="name">Votre nom</label>
-                <input type="text" id="name">
+                <input type="text" name="name" id="name">
                 <label for="address">Votre adresse</label>
-                <input type="text" id="address">
+                <input type="text" name="address" id="address">
+                <label for="country">Votre pays</label>
+                <input type="text" name="country" id="country">
                 <label for="city">Votre ville</label>
-                <input type="text" id="city">
+                <input type="text" name="city" id="city">
                 <div class="form-group">
                     <div class="group-control">
                         <label for="postalcode">Votre code postal</label>
-                        <input type="text" id="postalcode">
+                        <input type="text" name="postalcode" id="postalcode">
                     </div>
                     <div class="group-control">
                         <label for="number">Votre téléphone</label>
-                        <input type="text" id="number">
+                        <input type="text" name="number" id="number">
                     </div>
                 </div>
                 <div class="payment-details">
                     <h2>Détails de paiement</h2>
-                    <label for="creditcard">Nom sur la carte de crédit</label>
-                    <input type="text" id="creditcard">
+                    <label for="name_on_card">Nom sur la carte de crédit</label>
+                    <input type="text" name="name_on_card" id="name_on_card">
                     <div class="stripe-block">
                         <label for="card-element">
-                        Carte de crédit
+                        Vos informations de carte
                         </label>
                         <div id="card-element">
                         <!-- A Stripe Element will be inserted here. -->
@@ -47,7 +50,7 @@
                         <div id="card-errors" role="alert"></div>
                     </div>
                 </div>
-                <button type="submit" class="button confirmation-button">Valider la commande</button>
+                <button type="submit" id="complete-order-button" class="button confirmation-button">Valider la commande</button>
             </form>
         </div> <!-- end billing-details -->
 
@@ -135,11 +138,25 @@
             form.addEventListener('submit', function(event) {
             event.preventDefault();
 
-            stripe.createToken(card).then(function(result) {
+            document.getElementById('complete-order-button').disabled = true;
+
+            var options = {
+                name: document.getElementById('name_on_card').value,
+                address_line1: document.getElementById('address').value,
+                name: document.getElementById('name').value,
+                address_city: document.getElementById('city').value,
+                address_state: document.getElementById('country').value,
+                address_zip: document.getElementById('postalcode').value,
+            }
+
+            stripe.createToken(card, options).then(function(result) {
                 if (result.error) {
                 // Inform the user if there was an error.
                 var errorElement = document.getElementById('card-errors');
                 errorElement.textContent = result.error.message;
+
+                // Enable button
+                document.getElementById('complete-order-button').disabled = false;
                 } else {
                 // Send the token to your server.
                 stripeTokenHandler(result.token);
@@ -157,7 +174,7 @@
             form.appendChild(hiddenInput);
 
             // Submit the form
-            // form.submit();
+            form.submit();
             }
     </script>
 @endsection

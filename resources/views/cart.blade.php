@@ -68,8 +68,9 @@
         @else
             <h2 class="cart-title">Votre panier est vide pour le moment.</h2>
             @if(Cart::instance('saveForLater')->count() > 0)
-            <small>Mais vous avez des articles mis de côté pour un achat ultérieur. Pour en acheter un ou plus maintenant, cliquez sur Mettre dans le panier à côté de l'article.</small>
+            <small class="cart-small">Mais vous avez des articles mis de côté pour un achat ultérieur. Pour en acheter un ou plus maintenant, cliquez sur Mettre dans le panier à côté de l'article.</small>
             @endif
+            <p class="cart-paragraph"><a href="{{ route('shop.index') }}">Retourner à la boutique.</a></p>
         @endif
 
         @if(Cart::instance('saveForLater')->count() > 0)
