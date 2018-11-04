@@ -18,6 +18,7 @@ Route::get('/boutique/{slug}', 'ShopController@show')->name('shop.show');
 
 Route::get('/panier', 'CartController@index')->name('cart.index');
 Route::post('/panier', 'CartController@store')->name('cart.store');
+Route::patch('/panier/{product}', 'CartController@update')->name('cart.update');
 Route::delete('/panier/{product}', 'CartController@destroy')->name('cart.destroy');
 
 Route::post('/switchtosaveforlater/{product}', 'SaveForLaterController@switch')->name('saveforlater.switch');

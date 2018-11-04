@@ -26,15 +26,13 @@
                     <button type="submit" class="later-button">Mettre de côté</button>
                 </form>
             </div>
-            <select class="quantity">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
+            <select class="quantity" data-id="{{ $item->rowId }}">
+                @for ($i = 1; $i < 6; $i++)
+                    <option {{ $item->qty == $i ? 'selected' : '' }} value="{{ $i }}">{{ $i }}</option>
+                @endfor
             </select>
             <div class="item-price">
-                {{ $item->model->formattedPrice() }}
+                {{ formattedPrice($item->subtotal()) }}
             </div>
         </div>
         @endforeach
@@ -124,7 +122,16 @@
 
         Array.from(className).forEach(function(element){
             element.addEventListener('change', function() {
-                alert('changed');
+                const id = element.getAttribute('data-id');
+                axios.patch(`/panier/${id}`, {
+                quantity: this.value,
+                })
+                .then(function (response) {
+                    window.location.href =  '{{ route('cart.index') }}';
+                })
+                .catch(function (error) {
+                    window.location.href =  '{{ route('cart.index') }}';
+                });
             });
         });
     })();
