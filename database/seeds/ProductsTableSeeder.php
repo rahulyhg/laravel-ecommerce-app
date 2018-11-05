@@ -12,85 +12,37 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        Product::create([
-            'name' => 'MacBookPro 1625',
-            'slug' => 'macbook-pro-1625',
-            'details' => 'Nouveaux processeurs Intel hexacœurs et quadricœurs de 8e génération.',
-            'price' => 149999,
-            'description' => 'Avec le MacBook Pro, l’ordinateur portable atteint des sommets inédits en matière de performances et de portabilité. Quelles que soient les contrées où vous mènera votre imagination, vous parviendrez plus vite que jamais à vos objectifs grâce, entre autres, à des processeurs et à une mémoire hautes performances, à des graphismes avancés et à un système de stockage d’une rapidité fulgurante.',
-        ]);
+        // Laptops
+        for ($i = 1; $i < 15; $i++) {
+            Product::create([
+                'name' => 'Laptop ' . $i,
+                'slug' => 'laptop-' . $i,
+                'details' => [13, 14, 15][array_rand([13, 14, 15])] . 'pouces' . [1, 2, 3][array_rand([1, 2, 3])] . 'TB SSD, 32GB RAM',
+                'price' => rand(149999, 249999),
+                'description' => 'Lorem ' . $i . ' ipsum dolor sit amet consectetur adipisicing elit. Magnam quas distinctio ea dolor, eaque sed molestias nam architecto doloremque nulla.',
+            ]);
+        }
 
-        Product::create([
-            'name' => 'MacBookPro 32Go-22',
-            'slug' => 'macbook-pro-32go-2',
-            'details' => 'Une grande puissance implique de grandes capacités.',
-            'price' => 149999,
-            'description' => 'vec des processeurs Intel Core de 8e génération, le MacBook Pro bat des records de puissance en matière de calcul. Le modèle 15 pouces intègre désormais un processeur Intel Core i9 hexacœur jusqu’à 70 % plus rapide que ceux de génération précédente, avec un Turbo Boost pouvant atteindre 4,8 GHz.',
-        ]);
+        // Desktops
+        for ($i = 1; $i < 10; $i++) {
+            Product::create([
+                'name' => 'Desktop ' . $i,
+                'slug' => 'desktop-' . $i,
+                'details' => [24, 25, 27][array_rand([24, 25, 27])] . 'pouces' . [1, 2, 3][array_rand([1, 2, 3])] . 'TB SSD, 32GB RAM',
+                'price' => rand(249999, 449999),
+                'description' => 'Lorem ' . $i . ' ipsum dolor sit amet consectetur adipisicing elit. Magnam quas distinctio ea dolor, eaque sed molestias nam architecto doloremque nulla.',
+            ]);
+        }
 
-        Product::create([
-            'name' => 'MacBookPro 5666',
-            'slug' => 'macbook-pro-5666',
-            'details' => 'Nouveaux processeurs Intel hexacœurs et quadricœurs de 8e génération.',
-            'price' => 249999,
-            'description' => 'Avec le MacBook Pro, l’ordinateur portable atteint des sommets inédits en matière de performances et de portabilité. Quelles que soient les contrées où vous mènera votre imagination, vous parviendrez plus vite que jamais à vos objectifs grâce, entre autres, à des processeurs et à une mémoire hautes performances, à des graphismes avancés et à un système de stockage d’une rapidité fulgurante.',
-        ]);
-
-        Product::create([
-            'name' => 'MacBook 32Go 265',
-            'slug' => 'macbook-32go-265',
-            'details' => 'Une grande puissance implique de grandes capacités.',
-            'price' => 169999,
-            'description' => 'vec des processeurs Intel Core de 8e génération, le MacBook Pro bat des records de puissance en matière de calcul. Le modèle 15 pouces intègre désormais un processeur Intel Core i9 hexacœur jusqu’à 70 % plus rapide que ceux de génération précédente, avec un Turbo Boost pouvant atteindre 4,8 GHz.',
-        ]);
-
-        Product::create([
-            'name' => 'MacBookPro 120',
-            'slug' => 'macbook-pro-120',
-            'details' => 'Nouveaux processeurs Intel hexacœurs et quadricœurs de 8e génération.',
-            'price' => 329999,
-            'description' => 'Avec le MacBook Pro, l’ordinateur portable atteint des sommets inédits en matière de performances et de portabilité. Quelles que soient les contrées où vous mènera votre imagination, vous parviendrez plus vite que jamais à vos objectifs grâce, entre autres, à des processeurs et à une mémoire hautes performances, à des graphismes avancés et à un système de stockage d’une rapidité fulgurante.',
-        ]);
-
-        Product::create([
-            'name' => 'MacBookPro 32Go',
-            'slug' => 'macbook-pro-32go-1545',
-            'details' => 'Une grande puissance implique de grandes capacités.',
-            'price' => 529999,
-            'description' => 'vec des processeurs Intel Core de 8e génération, le MacBook Pro bat des records de puissance en matière de calcul. Le modèle 15 pouces intègre désormais un processeur Intel Core i9 hexacœur jusqu’à 70 % plus rapide que ceux de génération précédente, avec un Turbo Boost pouvant atteindre 4,8 GHz.',
-        ]);
-
-        Product::create([
-            'name' => 'MacBookPro Rétina',
-            'slug' => 'macbook-pro-retina',
-            'details' => 'Touch Bar. Pour un travail plus productif.',
-            'price' => 109999,
-            'description' => 'Avec le MacBook Pro, l’ordinateur portable atteint des sommets inédits en matière de performances et de portabilité. Quelles que soient les contrées où vous mènera votre imagination, vous parviendrez plus vite que jamais à vos objectifs grâce, entre autres, à des processeurs et à une mémoire hautes performances, à des graphismes avancés et à un système de stockage d’une rapidité fulgurante.',
-        ]);
-
-        Product::create([
-            'name' => 'MacBookPro QuadCore',
-            'slug' => 'macbook-pro-265',
-            'details' => 'Une grande puissance implique de grandes capacités.',
-            'price' => 299999,
-            'description' => 'vec des processeurs Intel Core de 8e génération, le MacBook Pro bat des records de puissance en matière de calcul. Le modèle 15 pouces intègre désormais un processeur Intel Core i9 hexacœur jusqu’à 70 % plus rapide que ceux de génération précédente, avec un Turbo Boost pouvant atteindre 4,8 GHz.',
-        ]);
-
-        Product::create([
-            'name' => 'MacBookPro 9562',
-            'slug' => 'macbook-pro-9562',
-            'details' => 'Nouveaux processeurs Intel hexacœurs et quadricœurs de 8e génération.',
-            'price' => 139999,
-            'description' => 'Avec le MacBook Pro, l’ordinateur portable atteint des sommets inédits en matière de performances et de portabilité. Quelles que soient les contrées où vous mènera votre imagination, vous parviendrez plus vite que jamais à vos objectifs grâce, entre autres, à des processeurs et à une mémoire hautes performances, à des graphismes avancés et à un système de stockage d’une rapidité fulgurante.',
-        ]);
-
-        Product::create([
-            'name' => 'MacBookPro 64Go',
-            'slug' => 'macbook-pro-64go-5699',
-            'details' => 'Une grande puissance implique de grandes capacités.',
-            'price' => 879999,
-            'description' => 'vec des processeurs Intel Core de 8e génération, le MacBook Pro bat des records de puissance en matière de calcul. Le modèle 15 pouces intègre désormais un processeur Intel Core i9 hexacœur jusqu’à 70 % plus rapide que ceux de génération précédente, avec un Turbo Boost pouvant atteindre 4,8 GHz.',
-        ]);
-
+        // Mobiles
+        for ($i = 1; $i < 5; $i++) {
+            Product::create([
+                'name' => 'Mobile ' . $i,
+                'slug' => 'mobile-' . $i,
+                'details' => [10, 11, 13][array_rand([10, 11, 13])] . 'pouces' . [1, 2, 3][array_rand([1, 2, 3])] . 'IOS, 8GB RAM',
+                'price' => rand(79999, 89999),
+                'description' => 'Lorem ' . $i . ' ipsum dolor sit amet consectetur adipisicing elit. Magnam quas distinctio ea dolor, eaque sed molestias nam architecto doloremque nulla.',
+            ]);
+        }
     }
 }
