@@ -88,6 +88,10 @@ img {
   margin: auto;
 }
 
+.link-hover:hover {
+  color: var(--gray);
+}
+
 .button {
   border: 1px solid var(--text-color);
   padding: 12px 40px;
@@ -114,13 +118,17 @@ button.button {
   background: var(--text-color);
 }
 
+.button-container {
+  margin: 80px;
+}
+
+.active a {
+  color: var(--gray);
+}
+
 .section-description {
   width: 80%;
   margin: auto;
-}
-
-.button-container {
-  margin: 80px;
 }
 
 .s-between {
@@ -715,5 +723,22 @@ footer .footer-content ul a {
 
 footer i.fa-heart {
   color: pink;
+}
+
+/* PAGINATION */
+.pagination {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.page-item {
+    display: inline-block;
+    padding: 8px 16px;
+    border: solid var(--separator-color) 1px;
+}
+
+.page-item.active {
+    background-color: var(--gray) !important;
+    color: var(--white);
 }
 

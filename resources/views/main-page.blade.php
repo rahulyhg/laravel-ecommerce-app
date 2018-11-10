@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}" />
+    <link rel="icon" type="image/png" href="{{ asset('favicon.jpg') }}" />
 
     <title>Accueil | E-commerce App</title>
 </head>
@@ -68,7 +68,7 @@
         <div class="products text-center">
             @foreach ($products as $product)
                 <div class="product">
-                    <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}"><img src="{{ asset('img/products/' . $product->slug . '.png') }}" alt="product"></a>
+                    <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}"><img src="{{ asset('img/products/' . $product->slug . '.jpg') }}" alt="product"></a>
                     <a href="{{ route('shop.show', ['slug'=>$product->slug]) }}">
                         <div class="product-name">{{ $product->name }}</div>
                     </a>

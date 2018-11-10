@@ -14,7 +14,7 @@ class MainPageController extends Controller
      */
     public function index()
     {
-        $products = Product::inRandomOrder()->take(8)->get();
+        $products = Product::where('featured', true)->take(8)->inRandomOrder()->get();
 
         return view('main-page')->with('products', $products);
     }

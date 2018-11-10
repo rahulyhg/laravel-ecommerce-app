@@ -59,13 +59,13 @@
             <div class="order-items">
                 @foreach($items as $item)
                 <div class="order-item">
-                    <img src="{{ asset('img/products/' . $item->model->slug . '.png') }}" alt="item">
+                    <img src="{{ asset('img/products/' . $item->model->slug . '.jpg') }}" alt="item">
                     <div class="order-item-details">
                         <h4><a href="{{ route('shop.show', ['id' => $item->model->slug]) }}">{{ $item->model->name }}</a></h4>
                         <small>x ({{ $item->qty }})</small>
                         <small>{{ str_limit($item->model->details, $limit = 50, $end = '...') }}</small>
                     </div>
-                    <div class="item-order-price">{{ $item->model->formattedPriceWithSpacer() }}</div>
+                    <div class="item-order-price">{{ $item->model->formattedPriceWithoutSpace() }}</div>
                 </div>
                 @endforeach
             </div> <!-- end order-items -->

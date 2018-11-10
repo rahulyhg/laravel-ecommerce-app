@@ -19,6 +19,7 @@ class CategoriesTableSeeder extends Seeder
             ['name' => 'Portables', 'slug' => 'portables', 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'Ordinateurs', 'slug' => 'ordinateurs', 'created_at' => $now, 'updated_at' => $now],
             ['name' => 'Mobiles', 'slug' => 'mobiles', 'created_at' => $now, 'updated_at' => $now],
+            ['name' => 'Gaming', 'slug' => 'gaming', 'created_at' => $now, 'updated_at' => $now],
         ]);
     }
 }

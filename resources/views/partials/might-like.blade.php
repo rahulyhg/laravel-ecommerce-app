@@ -4,7 +4,7 @@
         <div class="products text-center">
                 @foreach ($mightAlsoLikes as $mightAlsoLike)
                     <div class="product product-border">
-                    <a href="{{ route('shop.show', ['slug' => $mightAlsoLike->slug]) }}"><img src="{{ asset('img/products/' . $mightAlsoLike->slug . '.png') }}" alt="product">
+                    <a href="{{ route('shop.show', ['slug' => $mightAlsoLike->slug]) }}"><img src="{{ asset('img/products/' . $mightAlsoLike->slug . '.jpg') }}" alt="product">
                     <a href="#">
                         <div class="product-name">{{ $mightAlsoLike->name }}</div>
                     </a>

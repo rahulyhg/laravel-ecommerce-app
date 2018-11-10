@@ -10,7 +10,7 @@
         <div class="shopping-cart">
         @foreach (Cart::content() as $item)
         <div class="shopping-item">
-            <a href="{{ route('shop.show', ['id' => $item->model->slug]) }}"><img src="{{ asset('img/products/' . $item->model->slug . '.png') }}" alt="product"></a>
+            <a href="{{ route('shop.show', ['id' => $item->model->slug]) }}"><img src="{{ asset('img/products/' . $item->model->slug . '.jpg') }}" alt="product"></a>
             <div class="details">
                 <h3><a href="{{ route('shop.show', ['id' => $item->model->slug]) }}">{{ $item->model->name }}</a></h3>
                 <p>{{ str_limit($item->model->details, $limit = 50, $end = '...') }}</p>
@@ -79,7 +79,7 @@
                 <div class="shopping-cart">
                 @foreach (Cart::instance('saveForLater')->content() as $item)
                 <div class="shopping-item">
-                    <a href="{{ route('shop.show', ['id' => $item->model->slug]) }}"><img src="{{ asset('img/products/' . $item->model->slug . '.png') }}" alt="product"></a>
+                    <a href="{{ route('shop.show', ['id' => $item->model->slug]) }}"><img src="{{ asset('img/products/' . $item->model->slug . '.jpg') }}" alt="product"></a>
                     <div class="details">
                         <h3><a href="{{ route('shop.show', ['id' => $item->model->slug]) }}">{{ $item->model->name }}</a></h3>
                         <p>{{ str_limit($item->model->details, $limit = 50, $end = '...') }}</p>

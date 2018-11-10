@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Product;
 
 class ShopController extends Controller
@@ -13,9 +14,32 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $products = Product::inRandomOrder()->take(9)->get();
+        $categories = Category::all();
+        $pagination = 9;
 
-        return view('shop')->with('products', $products);
+        if (request()->categorie) {
+            $products = Product::with('categories')->whereHas('categories', function ($query) {
+                $query->where('slug', request()->categorie);
+            });
+            $categoryName = optional($categories->where('slug', request()->categorie)->first())->name;
+        } else {
+            $products = Product::where('featured', true);
+            $categoryName = 'Produits';
+        }
+
+        if (request()->sort == 'low_to_high') {
+            $products = $products->orderBy('price', 'asc')->paginate($pagination);
+        } elseif (request()->sort == 'high_to_low') {
+            $products = $products->orderBy('price', 'desc')->paginate($pagination);
+        } else {
+            $products = $products->paginate(9);
+        }
+
+        return view('shop')->with([
+            'products' => $products,
+            'categories' => $categories,
+            'categoryName' => $categoryName,
+        ]);
     }
 
     /**
