@@ -32,21 +32,21 @@
     }
 
     .featured-section {
-      padding: 50px 0 25px 0 !important;
+        padding: 50px 0 25px 0 !important;
     }
 
     .shop-section > .products {
-      grid-template-columns: repeat(2, 1fr) !important;
-      padding: 0 1em;
+        grid-template-columns: repeat(2, 1fr) !important;
+        padding: 0 1em;
     }
 
     .blog-posts {
         grid-template-columns: 1fr !important;
         text-align: center;
         grid-template-areas:
-        "blog1"
-        "blog2"
-        "blog3" !important;
+            "blog1"
+            "blog2"
+            "blog3" !important;
     }
 
     .main {
@@ -76,7 +76,7 @@
     }
 
     .mightalsolike .product-border {
-        margin: .5em 0;
+        margin: 0.5em 0;
         padding: 1em;
     }
 
@@ -88,7 +88,8 @@
         padding: 0 1em;
     }
 
-    .sidebar, .shop-section {
+    .sidebar,
+    .shop-section {
         flex: 1;
     }
 
@@ -111,8 +112,8 @@
     }
 
     .main-title {
-    margin-left: 0.5em;
-    margin-top: 1em;
+        margin-left: 0.5em;
+        margin-top: 1em;
     }
 
     .shopping-item {
@@ -121,18 +122,18 @@
         text-align: center;
     }
 
-    .coupon  {
+    .coupon {
         text-align: center;
-        padding: 0 .3em;
-        margin: 1.5em;
+        margin-bottom: 1em;
     }
 
-    .coupon button, .coupon input {
+    .coupon button,
+    .coupon input {
         width: 100%;
     }
 
     .accounting {
-        margin-right: .5em;
+        margin-right: 0.5em;
     }
 
     .shopping-cart-buttons {
@@ -142,7 +143,7 @@
     }
 
     .shopping-cart-buttons a:nth-child(1) {
-        margin-bottom: .5em;
+        margin-bottom: 0.5em;
     }
 
     .billing-details {
@@ -182,23 +183,20 @@
 
 /* Medium devices (landscape tablets, 768px and down) */
 @media only screen and (max-width: 768px) {
-
 }
 
 /* Small devices (portrait tablets and large phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-
     .responsive-button {
         display: block;
         margin-bottom: 0.5em;
     }
 
     .top-nav-list a {
-       font-size: 12px !important;
-      }
+        font-size: 12px !important;
+    }
 }
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-
 }

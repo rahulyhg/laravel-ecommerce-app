@@ -72,15 +72,41 @@
             <div class="detailed-price">
                 <div class="accounting">
                     <div>Sous-total</div>
+                    @if (session()->has('coupon'))
+                    <div class="coupon-code-color">Coupon ({{ session()->get('coupon')['name'] }})
+                    <form action="{{ route('coupon.destroy') }}" method="POST" style="display:inline">
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="normalize"><i class="fa fa-trash-o fa-fw" aria-hidden="true"></i></button>
+                    </form>
+                    </div>
+                    <hr>
+                    <div>N. Sous-Total</div>
+                    @endif
                     <div>TVA</div>
                     <div><span class="total">Total</span></div>
                 </div>
                 <div class="results">
                     <div>{{ formattedPrice(Cart::subtotal()) }}</div>
+                    @if (session()->has('coupon'))
+                    <div class="coupon-code-color">- {{ formattedPrice(session()->get('coupon')['discount']) }}</div>
+                    <hr>
+                    <div>stuff</div>
+                    @endif
                     <div>{{ formattedPrice(Cart::tax()) }}</div>
                     <div><span class="total">{{ formattedPrice( Cart::total()) }}</span></div>
                 </div>
             </div> <!-- end detailed-price -->
+            @if (!session()->has('coupon'))
+            <div class="coupon">
+                <h3>Vous avez un code?</h3>
+                <form action="{{ route('coupon.store') }}" method="POST">
+                    {{ csrf_field() }}
+                    <input type="text" name="coupon">
+                    <button type="submit">Appliquer</button>
+                </form>
+            </div> <!-- end coupon -->
+            @endif
         </div> <!-- end order -->
     </div>
 

@@ -38,13 +38,6 @@
         @endforeach
         </div> <!-- shopping-cart end -->
 
-        <div class="coupon">
-            <h3>Vous avez un code?</h3>
-            <form action="#">
-                <input type="text" name="" id="">
-                <button type="submit">Appliquer</button>
-            </form>
-        </div>
         <div class="bill">
             <p>Le livraison est gratuite. Blablabla Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, sint.</p>
             <div class="detailed-price">
