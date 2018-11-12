@@ -89,12 +89,12 @@
                 <div class="results">
                     <div>{{ formattedPrice(Cart::subtotal()) }}</div>
                     @if (session()->has('coupon'))
-                    <div class="coupon-code-color">- {{ formattedPrice(session()->get('coupon')['discount']) }}</div>
+                    <div class="coupon-code-color">- {{ formattedPrice($discount) }}</div>
                     <hr>
-                    <div>stuff</div>
+                    <div>{{ formattedPrice($newSubtotal) }}</div>
                     @endif
-                    <div>{{ formattedPrice(Cart::tax()) }}</div>
-                    <div><span class="total">{{ formattedPrice( Cart::total()) }}</span></div>
+                    <div>{{ formattedPrice($newTax) }}</div>
+                    <div><span class="total">{{ formattedPrice($newTotal) }}</span></div>
                 </div>
             </div> <!-- end detailed-price -->
             @if (!session()->has('coupon'))

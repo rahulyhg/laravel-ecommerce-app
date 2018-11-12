@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckoutRequest;
 use Cartalyst\Stripe\Exception\CardErrorException;
 use Cartalyst\Stripe\Laravel\Facades\Stripe;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-use App\Http\Requests\CheckoutRequest;
 
 class CheckoutController extends Controller
 {
@@ -19,7 +19,13 @@ class CheckoutController extends Controller
     {
         $items = Cart::instance('default')->content();
 
-        return view('checkout')->with('items', $items);
+        return view('checkout')->with([
+            'items' => $items,
+            'discount' => $this->getNumbers()->get('discount'),
+            'newSubtotal' => $this->getNumbers()->get('newSubtotal'),
+            'newTax' => $this->getNumbers()->get('newTax'),
+            'newTotal' => $this->getNumbers()->get('newTotal'),
+        ]);
     }
 
     /**
@@ -50,20 +56,40 @@ class CheckoutController extends Controller
                 'source' => $request->stripeToken,
                 'receipt_email' => $request->email,
                 'description' => 'Order from Laravel Ecommerce App',
-                'amount' => Cart::total() / 100,
+                'amount' => $this->getNumbers()->get('newTotal') / 100,
                 'metadata' => [
                     'contents' => $contents,
                     'quantity' => Cart::instance('default')->count(),
+                    'coupon' => collect(session()->get('coupon'))->toJson(),
                 ],
             ]);
 
             Cart::instance('default')->destroy();
+            session()->forget('coupon');
+
             // SUCCESSFUL RESPONSE
             return back()->with('success', 'Merci, votre paiement a été formidablement accepté.');
         } catch (CardErrorException $e) {
             return back()->withErrors($e->getMessage());
         }
 
+    }
+
+    private function getNumbers()
+    {
+        $tax = config('cart.tax') / 100;
+        $discount = session()->get('coupon')['discount'] ?? 0;
+        $newSubtotal = (Cart::subtotal() - $discount);
+        $newTax = $newSubtotal * $tax;
+        $newTotal = $newSubtotal + $newTax;
+
+        return collect([
+            'tax' => $tax,
+            'discount' => $discount,
+            'newSubtotal' => $newSubtotal,
+            'newTax' => $newTax,
+            'newTotal' => $newTotal,
+        ]);
     }
 
     /**
